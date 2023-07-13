@@ -11,7 +11,7 @@ describe('(2) Prueba a "DataService"', () => {
   });
 
   it('Debe de crearse correctamente', () => {
-    expect(service).toBeTruthy();
+    expect(service).toBeTruthy();//ademas retornar true, compruena si el servicio esta creado.. existe
   });
 
   it(`Revisar generación de numeros`, () => {

@@ -12,7 +12,7 @@ describe(`(1) TEST del componente "AppComponent"`, () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule,
+        ReactiveFormsModule, //para uso de formularios reactivos
         FormsModule,
         HttpClientTestingModule//TODO: <-----
       ],
@@ -23,23 +23,24 @@ describe(`(1) TEST del componente "AppComponent"`, () => {
 
   });
 
-  //TODO:Aislado! 
+  //TODO:Aislado!
   it('Debe de existir el AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance
+    //toBeTruthy probar que exista
     expect(app).toBeTruthy(); //TODO: ✔
   });
 
-  //TODO:Aislado! 
+  //TODO:Aislado!
   it('Debe retornar formulario invalido', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance
-    fixture.detectChanges() //TODO: <---------------
+    fixture.detectChanges() //Aqui detectamos cambios desde el formulario
 
-    const email = app.form.controls['email']
-    email.setValue('leifer33@gmail.com')
+    const email = app.form.controls['email'] //hacer referencia input "email"
+    email.setValue('leifer33@gmail.com')//simular la escritura de "leifer33@gmail.com"
 
-    expect(app.form.invalid).toBeTrue(); //TODO: ✔
+    expect(app.form.invalid).toBeTrue(); //espero de from.invalis es true
   });
 
   it('Debe retornar formulario valido', () => {
@@ -60,21 +61,24 @@ describe(`(1) TEST del componente "AppComponent"`, () => {
   });
 
   //TODO:Aislado!
-  // it(`Debe de actulizar datos de usuario`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   fixture.detectChanges()
+   xit(`Debe de actulizar datos de usuario`, () => {
+     const fixture = TestBed.createComponent(AppComponent);
+     const app = fixture.componentInstance;
+     fixture.detectChanges()
 
-  //   let email = app.form.controls['email']
-  //   let password = app.form.controls['password']
+     let email = app.form.controls['email']
+     let password = app.form.controls['password']
 
-  //   email.setValue('leifer33@gmail.com')
-  //   password.setValue('123456')
+     email.setValue('leifer33@gmail.com')
+     password.setValue('123456')
 
-  //   const btnElement = fixture.debugElement.query(By.css('button.btn'))
-  //   btnElement.nativeElement.click()
-  //   const testData = { user: 1 }
-  //   expect(app.isCheck).toEqual(testData)
-  // });
+     const btnElement = fixture.debugElement.query(By.css('button.btn'))// un "button" que tenga la clase btn
+     //debugElement, llamadas x #ID, html nativo, o por clase ".clase_element"
+     btnElement.nativeElement.click()
+     const testData = { user: 1 }
+     console.log(app.isCheck);
+
+     expect(app.isCheck).toEqual(testData)
+   });
 
 });
